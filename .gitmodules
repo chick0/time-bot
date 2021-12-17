@@ -1,0 +1,3 @@
+[submodule "NicoBot"]
+	path = NicoBot
+	url = https://github.com/KokoseiJ/NicoBot
