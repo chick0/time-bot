@@ -1,6 +1,6 @@
 # time-bot
 
-`/t` 명령어를 사용하면 **KST(한국 표준시)**와 **PST(태평양 표준시)**의 시간을 보여줍니다.
+`/t` 명령어를 사용하면 **KST**(한국 표준시)와 **PST**(태평양 표준시)의 시간을 보여줍니다.
 
 ![test](https://user-images.githubusercontent.com/64462443/151370783-f58c76fe-afc3-4114-bedb-7b1fbc41b66f.png)
 
