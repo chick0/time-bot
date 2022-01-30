@@ -42,12 +42,25 @@ def t(ctx):
     ])
 
 
+@SlashCommand.create("UTC ", ())
+def utc(ctx):
+    _ = datetime.utcnow()
+    _ = _.strftime(DATE_FORMAT) \
+        .replace("#", DATE.get(_.strftime("%a"))) \
+        .replace("@", TIME.get(_.strftime("%p")))
+
+    return "\n".join([
+        f"= **UTC** =   {_}"
+    ])
+
+
 gw = DiscordInteractionClient(
     environ.get("token"),
     intents=4609
 )
 
 gw.command_manager.register(t)
+gw.command_manager.register(utc)
 
 gw.start()
 gw.ready_to_run.wait()
