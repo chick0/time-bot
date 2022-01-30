@@ -11,6 +11,8 @@ from NicoBot.discordapi.const import LIB_NAME
 from NicoBot.discordapi.slash import SlashCommand
 from NicoBot.discordapi.slash import DiscordInteractionClient
 
+from const import *
+
 load_dotenv()
 
 logger = logging.getLogger(LIB_NAME)
@@ -26,35 +28,17 @@ handler.setLevel("INFO")
 
 @SlashCommand.create("시간 정보 로딩", ())
 def t(ctx):
-    date_format = "%Y년 %m월 %d일 [ # ]     [ @ ] %I시 %M분"
-    date_map = {
-        "Sun": "***일요일***",
-        "Mon": "월요일",
-        "Tue": "화요일",
-        "Wed": "수요일",
-        "Thu": "목요일",
-        "Fri": "금요일",
-        "Sat": "**토요일**",
-    }
-    time_map = {
-        "AM": "*오전*",
-        "PM": "오후",
-    }
-
-    pst = datetime.now(timezone(timedelta(hours=-8)))
-    kst = datetime.now(timezone(timedelta(hours=+9)))
-
-    pst = pst.strftime(date_format) \
-        .replace("#", date_map.get(pst.strftime("%a"))) \
-        .replace("@", time_map.get(pst.strftime("%p")))
-
-    kst = kst.strftime(date_format) \
-        .replace("#", date_map.get(kst.strftime("%a"))) \
-        .replace("@", time_map.get(kst.strftime("%p")))
+    _ = []
+    for w in [-8, +9]:
+        target = datetime.now(timezone(timedelta(hours=w)))
+        target = target.strftime(DATE_FORMAT)\
+            .replace("#", DATE.get(target.strftime("%a")))\
+            .replace("@", TIME.get(target.strftime("%p")))
+        _.append(target)
 
     return "\n".join([
-        f"= **PST** =   {pst}",
-        f"~~=~~ **KST** ~~=~~   {kst}",
+        f"= **PST** =   {_[0]}",
+        f"= **KST** =   {_[1]}",
     ])
 
 
